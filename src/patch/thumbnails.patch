@@ -1,0 +1,22 @@
+--- thumbnails.py 2024-08-20 18:13:39.666883991 +0300
++++ thumbnails_patched.py 2024-08-20 17:19:39.860726735 +0300
+@@ -37,9 +37,17 @@
+         if not url:
+             return self.get_fallback()
+
++        http_proxy  = "PROXYHERE"
++        https_proxy = http_proxy
++
++        proxies = {
++            "http"  : http_proxy,
++            "https" : https_proxy
++        }
++
+         for i in range(3):
+             try:
+-                response = requests.get(url, stream=True, timeout=5)
++                response = requests.get(url, stream=True, timeout=10, proxies=proxies)
+                 if response.ok:
+                     try:
+                         img = Image.open(response.raw)
+

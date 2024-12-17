@@ -1,0 +1,10 @@
+--- yt_dlp_base.py 2024-08-20 18:13:47.761946545 +0300
++++ yt_dlp_base_patched.py 2024-08-20 17:16:52.373470330 +0300
+@@ -37,6 +37,7 @@
+         self.obs.update(self.obs_request)
+         if self.config:
+             self.add_cookie()
++        self.obs["proxy"] = "PROXYHERE"
+
+     def add_cookie(self):
+         """add cookie if enabled"""

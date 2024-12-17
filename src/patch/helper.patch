@@ -1,0 +1,21 @@
+--- helper.py 2024-08-20 18:13:31.858823644 +0300
++++ helper_patched.py 2024-08-20 17:26:46.854932496 +0300
+@@ -141,8 +141,17 @@
+     """check if youtube_id is a shorts video, bot not it it's not a shorts"""
+     shorts_url = f"https://www.youtube.com/shorts/{youtube_id}"
+     cookies = {"SOCS": "CAI"}
++
++    http_proxy  = "PROXYHERE"
++    https_proxy = http_proxy
++
++    proxies = {
++        "http"  : http_proxy,
++        "https" : https_proxy
++    }
++
+     response = requests.head(
+-        shorts_url, cookies=cookies, headers=requests_headers(), timeout=10
++        shorts_url, cookies=cookies, headers=requests_headers(), timeout=10, proxies=proxies
+     )
+
+     return response.status_code == 200
